@@ -108,6 +108,7 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
                     colors = TextFieldDefaults.colors(
                         unfocusedContainerColor = Color.Transparent,
                         focusedContainerColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
                     )
                 )
                 Box(
@@ -133,6 +134,7 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
                     colors = TextFieldDefaults.colors(
                         unfocusedContainerColor = Color.Transparent,
                         focusedContainerColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
                     )
                 )
                 Box(
@@ -158,6 +160,7 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
                     colors = TextFieldDefaults.colors(
                         unfocusedContainerColor = Color.Transparent,
                         focusedContainerColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
                     ),
                     visualTransformation = if (visibility) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {

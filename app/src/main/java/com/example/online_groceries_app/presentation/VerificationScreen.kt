@@ -109,6 +109,7 @@ fun VerificationScreen(modifier: Modifier = Modifier) {
                         colors = TextFieldDefaults.colors(
                             unfocusedContainerColor = Color.Transparent,
                             focusedContainerColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
                         )
                     )
                     Box(

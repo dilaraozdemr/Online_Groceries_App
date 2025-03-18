@@ -5,4 +5,8 @@
     <color name="grey">#FF828282</color>
     <color name="google_button_blue">#FF5383EC</color>
     <color name="facebook_button_blue">#FF4A66AC</color>
+    <color name="groceries_one">#FFF8A44C</color>
+    <color name="groceries_two">#FF53B175</color>
+    <color name="groceries_three">#FFD3B0E0</color>
+    <color name="groceries_four">#FFF7A593</color>
 </resources>

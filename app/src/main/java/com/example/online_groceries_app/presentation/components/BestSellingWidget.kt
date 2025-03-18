@@ -72,7 +72,6 @@ fun BestSellingWidget(modifier: Modifier = Modifier) {
             ),
         )
 
-    val pagerState = rememberPagerState(pageCount = { cards.size })
 
     Column(
         modifier = modifier.fillMaxWidth()
