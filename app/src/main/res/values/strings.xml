@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Online_Groceries_App</string>
+    <string name="nectar">nectar</string>
+    <string name="online">online groceriet</string>
+    <string name="onboarding_title_one">Welcome</string>
+    <string name="onboarding_title_two">to our store</string>
+    <string name="onboarding_desc">Ger your groceries in as fast as hour</string>
+    <string name="signin_nectar">Get your groceries\nwith nectar</string>
+    <string name="sign_in_or">Or connect with social media</string>
+    <string name="select_location_desc">Switch on your location to stay in tune with what s happening in your area</string>
+    <string name="login_desc">Enter your emails and password</string>
+    <string name="signup_desc">Enter your credentials to continue</string>
+    <string name="seeAll">See all</string>
+</resources>

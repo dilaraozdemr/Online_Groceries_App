@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash_background_green">#FF53B175</color>
+    <color name="light_grey">#FFE2E2E2</color>
+    <color name="grey">#FF828282</color>
+    <color name="google_button_blue">#FF5383EC</color>
+    <color name="facebook_button_blue">#FF4A66AC</color>
+</resources>
