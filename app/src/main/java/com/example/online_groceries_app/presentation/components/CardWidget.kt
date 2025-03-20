@@ -4,6 +4,7 @@ import android.graphics.drawable.Icon
 import android.media.Image
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -33,19 +34,32 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.data.CardData
 
 @Composable
 fun CardWidget(
     card: CardData,
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     Box(
-        modifier = modifier.background(
-            color = Color.White,
-            shape = RoundedCornerShape(18.dp)
-        )
+        modifier = modifier
+            .border(
+                color = colorResource(id = R.color.grey),
+                width = 1.dp,
+                shape = RoundedCornerShape(18.dp)
+            )
+            .background(
+                color = Color.White,
+                shape = RoundedCornerShape(18.dp)
+            )
+            .clickable {
+                navController.navigate(
+                    "detail/${card.cardId}/${card.title}/${card.desc}/${card.amount}/${card.imageResId}/${card.total}/${card.productDetail}"
+                )
+            }
     ) {
         Column(
             modifier = Modifier.padding(vertical = 10.dp, horizontal = 20.dp)
@@ -79,7 +93,9 @@ fun CardWidget(
         }
 
         Text(
-            modifier = Modifier.align(Alignment.BottomStart).padding(10.dp),
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .padding(10.dp),
             text = "$${card.amount}", style = TextStyle(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,

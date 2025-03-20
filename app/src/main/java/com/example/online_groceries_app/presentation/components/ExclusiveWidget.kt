@@ -27,56 +27,78 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.data.CardData
 import com.example.online_groceries_app.presentation.data.CarouselItem
 
-@Preview
 @Composable
-fun ExclusiveWidget(modifier: Modifier = Modifier) {
+fun ExclusiveWidget(modifier: Modifier = Modifier, navController: NavHostController) {
     val cards =
         listOf(
             CardData(
-                imageResId = R.drawable.location,
+                imageResId = R.drawable.apple,
                 title = "Organic Bananas",
                 amount = 4.99,
-                desc = "7pcs, Priceg"
+                desc = "7pcs, Priceg",
+                cardId = 1,
+                productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                total = 1
             ),
             CardData(
-                imageResId = R.drawable.location,
+                imageResId = R.drawable.apple,
                 title = "Organic Bananas",
                 amount = 4.99,
-                desc = "7pcs, Priceg"
+                desc = "7pcs, Priceg",
+                cardId = 2,
+                productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                total = 1
             ),
             CardData(
-                imageResId = R.drawable.location,
+                imageResId = R.drawable.apple,
                 title = "Organic Bananas",
                 amount = 4.99,
-                desc = "7pcs, Priceg"
+                desc = "7pcs, Priceg",
+                cardId = 3,
+                productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                total = 1
             ),
             CardData(
-                imageResId = R.drawable.location,
+                imageResId = R.drawable.apple,
                 title = "Organic Bananas",
                 amount = 4.99,
-                desc = "7pcs, Priceg"
+                desc = "7pcs, Priceg",
+                cardId = 4,
+                productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                total = 1
             ),
             CardData(
-                imageResId = R.drawable.location,
+                imageResId = R.drawable.apple,
                 title = "Organic Bananas",
                 amount = 4.99,
-                desc = "7pcs, Priceg"
+                desc = "7pcs, Priceg",
+                cardId = 5,
+                productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                total = 1
             ),
             CardData(
-                imageResId = R.drawable.location,
+                imageResId = R.drawable.apple,
                 title = "Organic Bananas",
                 amount = 4.99,
-                desc = "7pcs, Priceg"
+                desc = "7pcs, Priceg",
+                cardId = 6,
+                productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                total = 1
             ),
             CardData(
-                imageResId = R.drawable.location,
+                imageResId = R.drawable.apple,
                 title = "Organic Bananas",
                 amount = 4.99,
-                desc = "7pcs, Priceg"
+                desc = "7pcs, Priceg",
+                cardId = 7,
+                productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                total = 1
             ),
         )
 
@@ -112,7 +134,7 @@ fun ExclusiveWidget(modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(cards) { card ->
-                CardWidget(card = card)
+                CardWidget(card = card, navController = navController)
             }
         }
     }

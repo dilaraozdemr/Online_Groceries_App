@@ -70,4 +70,5 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation("androidx.compose.material3:material3:$composeMaterial3Version")
     implementation("dev.chrisbanes.haze:haze-jetpack-compose:0.4.1")
+    implementation("com.github.skydoves:cloudy:0.2.0")
 }

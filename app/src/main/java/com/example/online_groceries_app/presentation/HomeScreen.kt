@@ -77,8 +77,7 @@ import dev.chrisbanes.haze.HazeState
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "RememberReturnType")
 @Composable
-@Preview
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(modifier: Modifier = Modifier, navController: NavHostController) {
     val configuration = LocalConfiguration.current
     val scrollState = rememberScrollState()
     val screenWidth = configuration.screenWidthDp.dp
@@ -105,7 +104,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     val pagerState = rememberPagerState(pageCount = { images.size })
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().background(Color.White),
     ){
         Column(
             modifier = Modifier
@@ -231,11 +230,12 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 
             }
             Spacer(modifier = Modifier.height(30.dp))
-            ExclusiveWidget()
+            ExclusiveWidget(navController = navController)
             Spacer(modifier = Modifier.height(30.dp))
-            BestSellingWidget()
+            BestSellingWidget(navController = navController)
             Spacer(modifier = Modifier.height(30.dp))
-            GroceriesWidget()
+            GroceriesWidget(navController = navController)
+            Spacer(modifier = Modifier.height(100.dp))
         }
     }
 }
