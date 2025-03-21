@@ -9,7 +9,11 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BottomAppBarState
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -23,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import dev.chrisbanes.haze.HazeState
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomBarNav(navController: NavController) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
@@ -31,21 +36,12 @@ fun BottomBarNav(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(64.dp)
+            .height(88.dp)
             .background(
                 Color.White,
                 shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)
             )
-            .border(
-                width = Dp.Hairline,
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color.White,
-                        Color.White,
-                    ),
-                ),
-                shape = RoundedCornerShape(20.dp)
-            )
+            .navigationBarsPadding()
     ) {
         BottomBarTabsWidget(
             tabs,

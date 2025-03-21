@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -104,12 +105,12 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavHostController) 
     val pagerState = rememberPagerState(pageCount = { images.size })
 
     Scaffold(
+        containerColor = Color.White,
         modifier = Modifier.fillMaxSize().background(Color.White),
     ){
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 25.dp)
                 .verticalScroll(scrollState),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -139,7 +140,7 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavHostController) 
             Spacer(modifier = Modifier.height(20.dp))
             SearchBarWidget(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth().padding(horizontal = 24.dp),
                 query = text,
                 onQueryChange = {
                     text = it
@@ -192,7 +193,7 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavHostController) 
             }
                 HorizontalPager(
                     state = pagerState,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
                 ) { page ->
                     Box(modifier = Modifier.fillMaxWidth()) {
                     Image(

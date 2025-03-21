@@ -37,6 +37,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.data.CardData
+import com.google.gson.Gson
+import java.net.URLEncoder
 
 @Composable
 fun CardWidget(
@@ -47,18 +49,20 @@ fun CardWidget(
     Box(
         modifier = modifier
             .border(
-                color = colorResource(id = R.color.grey),
+                color = colorResource(id = R.color.light_grey),
                 width = 1.dp,
-                shape = RoundedCornerShape(18.dp)
+                shape = RoundedCornerShape(16.dp)
             )
             .background(
                 color = Color.White,
-                shape = RoundedCornerShape(18.dp)
+                shape = RoundedCornerShape(16.dp)
             )
             .clickable {
-                navController.navigate(
-                    "detail/${card.cardId}/${card.title}/${card.desc}/${card.amount}/${card.imageResId}/${card.total}/${card.productDetail}"
-                )
+                val gson = Gson()
+                val json = gson.toJson(card)
+                val encodedJson = URLEncoder.encode(json, "UTF-8")
+
+                navController.navigate("detail/$encodedJson")
             }
     ) {
         Column(

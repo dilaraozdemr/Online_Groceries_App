@@ -33,88 +33,85 @@ import androidx.compose.ui.unit.sp
 import com.example.online_groceries_app.R
 
 @Preview
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun OnboardingPage(modifier: Modifier = Modifier) {
-    Scaffold(
-        Modifier.fillMaxSize()
+    Box(
+        modifier = modifier.fillMaxSize()
     ) {
-        Box {
+        Image(
+            modifier = Modifier.fillMaxSize(),
+            painter = painterResource(id = R.drawable.onboarding),
+            contentDescription = "onboarding",
+            contentScale = ContentScale.FillWidth
+        )
+        Column(
+            modifier = Modifier.align(Alignment.BottomCenter),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Image(
-                modifier = Modifier.fillMaxSize(),
-                painter = painterResource(id = R.drawable.onboarding),
-                contentDescription = "onboarding",
-                contentScale = ContentScale.Crop
+                painter = painterResource(id = R.drawable.icon),
+                contentDescription = "icon",
+                modifier = Modifier
+                    .width(48.dp)
+                    .height(56.dp)
             )
-            Column(
-                modifier = Modifier.align(Alignment.BottomCenter),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+            Spacer(modifier = Modifier.height(30.dp))
+            Text(
+                text = stringResource(id = R.string.onboarding_title_one),
+                style = TextStyle(
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 48.sp,
+                    lineHeight = 29.sp,
+                    letterSpacing = 0.sp,
+                    color = Color.White
+                )
+            )
+            Text(
+                text = stringResource(id = R.string.onboarding_title_two),
+                style = TextStyle(
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 48.sp,
+                    lineHeight = 29.sp,
+                    letterSpacing = 0.sp,
+                    color = Color.White
+                )
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = stringResource(id = R.string.onboarding_desc),
+                style = TextStyle(
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 16.sp,
+                    lineHeight = 15.sp,
+                    letterSpacing = 0.sp,
+                    color = Color.White.copy(0.6f)
+                )
+            )
+            Spacer(modifier = Modifier.height(40.88.dp))
+            Box(
+                modifier = Modifier
+                    .background(
+                        shape = RoundedCornerShape(19),
+                        color = colorResource(id = R.color.splash_background_green)
+                    )
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.icon),
-                    contentDescription = "icon",
-                    modifier = Modifier
-                        .width(48.47.dp)
-                        .height(56.36.dp)
-                )
-                Spacer(modifier = Modifier.height(30.dp))
                 Text(
-                    text = stringResource(id = R.string.onboarding_title_one),
+                    modifier = Modifier.padding(
+                        horizontal = 127.dp,
+                        vertical = 24.5.dp
+                    ),
+                    text = "Get Started",
                     style = TextStyle(
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 48.sp,
-                        lineHeight = 29.sp,
+                        fontSize = 18.sp,
+                        lineHeight = 18.sp,
                         letterSpacing = 0.sp,
+                        fontWeight = FontWeight.SemiBold,
                         color = Color.White
                     )
                 )
-                Text(
-                    text = stringResource(id = R.string.onboarding_title_two),
-                    style = TextStyle(
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 48.sp,
-                        lineHeight = 29.sp,
-                        letterSpacing = 0.sp,
-                        color = Color.White
-                    )
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-                Text(
-                    text = stringResource(id = R.string.onboarding_desc),
-                    style = TextStyle(
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 16.sp,
-                        lineHeight = 15.sp,
-                        letterSpacing = 0.sp,
-                        color = Color.White.copy(0.6f)
-                    )
-                )
-                Spacer(modifier = Modifier.height(40.88.dp))
-                Box(
-                    modifier = Modifier
-                        .background(
-                            shape = RoundedCornerShape(19),
-                            color = colorResource(id = R.color.splash_background_green)
-                        )
-                ) {
-                    Text(
-                        modifier = Modifier.padding(
-                            horizontal = 127.dp,
-                            vertical = 24.5.dp
-                        ),
-                        text = "Get Started",
-                        style = TextStyle(
-                            fontSize = 18.sp,
-                            lineHeight = 18.sp,
-                            letterSpacing = 0.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            color = Color.White
-                        )
-                    )
-                }
-                Spacer(modifier = Modifier.height(90.66.dp))
             }
+            Spacer(modifier = Modifier.height(90.66.dp))
         }
     }
 }

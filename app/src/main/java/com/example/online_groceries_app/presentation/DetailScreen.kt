@@ -1,11 +1,11 @@
 package com.example.online_groceries_app.presentation
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,75 +21,89 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ExitToApp
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.components.ButtonWidget
+import com.example.online_groceries_app.presentation.data.CardData
 import com.skydoves.cloudy.cloudy
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun DetailScreen(
-    cardId: Int,
-    title: String,
-    desc: String,
-    amount: Double,
-    imageResId: Int,
-    total: Int,
-    productDetail: String,
-    modifier: Modifier = Modifier,
-    navHostController: NavHostController
+    cardData: CardData, navHostController: NavHostController,
 ) {
     Scaffold(
+        containerColor = Color.White,
         modifier = Modifier
-            .background(Color.White)
             .fillMaxSize(),
-
         ) {
 
         val scrollState = rememberScrollState()
-        var totalCard = remember { mutableStateOf(total) }
-        var amountCard = remember { mutableStateOf(amount) }
-        var productDetailBool = remember { mutableStateOf(true) }
-        var nutritionsBool = remember { mutableStateOf(true) }
-        var reviewBool = remember { mutableStateOf(true) }
+        var totalCard by remember { mutableIntStateOf(cardData.total) }
+        var amountCard by remember { mutableDoubleStateOf(cardData.amount) }
+        var isProductDetailExpanded by remember { mutableStateOf(true) }
+        var isNutritionExpanded by remember { mutableStateOf(false) }
+        var isReviewExpanded by remember { mutableStateOf(false) }
 
-        Column {
-            Box(modifier = modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .padding(top = 35.dp, start = 25.dp, end = 25.dp)
+                        .size(30.dp)
+                        .clickable { navHostController.popBackStack() },
+                    imageVector = Icons.AutoMirrored.Default.KeyboardArrowLeft, contentDescription = "back"
+                )
+
+                Icon(
+                    modifier = Modifier
+                        .padding(top = 35.dp, start = 25.dp, end = 25.dp)
+                        .size(30.dp),
+                    imageVector = Icons.Default.Share, contentDescription = "back"
+                )
+            }
+            Box(modifier = Modifier.fillMaxWidth()) {
                 Image(
                     modifier = Modifier
                         .cloudy(radius = 1000)
                         .padding(30.dp)
                         .fillMaxWidth(),
-                    painter = painterResource(id = imageResId),
+                    painter = painterResource(id = cardData.imageResId),
                     contentDescription = "image",
                     contentScale = ContentScale.Crop
                 )
@@ -97,27 +111,13 @@ fun DetailScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(40.dp),
-                    painter = painterResource(id = imageResId),
+                    painter = painterResource(id = cardData.imageResId),
                     contentDescription = "image",
                     contentScale = ContentScale.Crop
-                )
-                Icon(
-                    modifier = Modifier
-                        .padding(25.dp)
-                        .clickable { navHostController.popBackStack() },
-                    imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "back"
-                )
-
-                Icon(
-                    modifier = Modifier
-                        .padding(25.dp)
-                        .align(Alignment.TopEnd),
-                    imageVector = Icons.Default.Share, contentDescription = "back"
                 )
             }
             Column(
                 modifier = Modifier
-                    .verticalScroll(scrollState)
                     .padding(horizontal = 20.dp)
             ) {
 
@@ -126,14 +126,17 @@ fun DetailScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = title, style = TextStyle(
+                        text = cardData.title, style = TextStyle(
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                             lineHeight = 18.sp,
                             letterSpacing = 0.1.sp,
                         )
                     )
-                    Icon(imageVector = Icons.Default.FavoriteBorder, contentDescription = "")
+                    Icon(
+                        imageVector = Icons.Default.FavoriteBorder, contentDescription = "", tint = colorResource(
+                        id = R.color.grey
+                    ))
                 }
                 Spacer(modifier = Modifier.height(10.5.dp))
                 Text(
@@ -153,7 +156,7 @@ fun DetailScreen(
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        if (totalCard.value == 0) {
+                        if (totalCard == 0) {
                             Icon(
                                 imageVector = Icons.Filled.Close,
                                 contentDescription = "minus",
@@ -164,8 +167,8 @@ fun DetailScreen(
                         } else {
                             Icon(
                                 modifier = Modifier.clickable {
-                                    totalCard.value -= 1
-                                    amountCard.value = amountCard.value - amount
+                                    totalCard -= 1
+                                    amountCard -= cardData.amount
                                 },
                                 imageVector = Icons.Filled.Close,
                                 contentDescription = "minus",
@@ -179,13 +182,13 @@ fun DetailScreen(
                             modifier = Modifier
                                 .border(
                                     width = 1.dp,
-                                    color = colorResource(id = R.color.grey),
+                                    color = colorResource(id = R.color.light_grey),
                                     shape = RoundedCornerShape(17.dp)
                                 )
                         ) {
                             Text(
                                 modifier = Modifier.padding(vertical = 15.dp, horizontal = 20.dp),
-                                text = "${totalCard.value}", style = TextStyle(
+                                text = "${totalCard}", style = TextStyle(
                                     fontWeight = FontWeight.SemiBold,
                                     fontSize = 18.sp
                                 )
@@ -194,8 +197,8 @@ fun DetailScreen(
                         Spacer(modifier = Modifier.width(10.dp))
                         Icon(
                             modifier = Modifier.clickable {
-                                totalCard.value += 1
-                                amountCard.value = amountCard.value + amount
+                                totalCard += 1
+                                amountCard += cardData.amount
                             },
                             imageVector = Icons.Filled.Add,
                             contentDescription = "add",
@@ -203,7 +206,7 @@ fun DetailScreen(
                         )
                     }
                     Text(
-                        text = "$${String.format("%.2f", amountCard.value)}", style = TextStyle(
+                        text = "$${String.format("%.2f", amountCard)}", style = TextStyle(
                             fontWeight = FontWeight.Bold,
                             fontSize = 24.sp
                         )
@@ -234,15 +237,15 @@ fun DetailScreen(
                     Icon(
                         modifier = Modifier
                             .size(30.dp)
-                            .clickable { productDetailBool.value = !productDetailBool.value },
-                        imageVector = if (productDetailBool.value) Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowDown,
+                            .clickable { isProductDetailExpanded = !isProductDetailExpanded },
+                        imageVector = if (isProductDetailExpanded) Icons.Default.KeyboardArrowDown else Icons.AutoMirrored.Default.KeyboardArrowRight,
                         contentDescription = ""
                     )
                 }
-                if (productDetailBool.value) {
+                if (isProductDetailExpanded) {
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
-                        text = productDetail, style = TextStyle(
+                        text = cardData.productDetail, style = TextStyle(
                             fontWeight = FontWeight.Medium,
                             fontSize = 13.sp,
                             color = colorResource(id = R.color.grey)
@@ -266,23 +269,40 @@ fun DetailScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Product Detail", style = TextStyle(
+                        text = "Nutritions", style = TextStyle(
                             fontWeight = FontWeight.SemiBold,
                             fontSize = 16.sp
                         )
                     )
-                    Icon(
-                        modifier = Modifier
-                            .size(30.dp)
-                            .clickable { nutritionsBool.value = !nutritionsBool.value },
-                        imageVector = if (nutritionsBool.value) Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowDown,
-                        contentDescription = ""
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Box(modifier = Modifier.background(
+                            color = colorResource(id = R.color.light_grey),
+                            shape = RoundedCornerShape(5.dp)
+                        )){
+                            Text(
+                                modifier = Modifier.padding(vertical = 5.dp, horizontal = 4.dp),
+                                text = "100gr", style = TextStyle(
+                                fontWeight = FontWeight.SemiBold,
+                                fontSize = 9.sp,
+                                color = colorResource(id = R.color.grey)
+                            ))
+                        }
+                        Spacer(modifier = Modifier.width(15.dp))
+                        Icon(
+                            modifier = Modifier
+                                .size(30.dp)
+                                .clickable { isReviewExpanded = !isReviewExpanded },
+                            imageVector = if (isReviewExpanded) Icons.Default.KeyboardArrowDown else Icons.AutoMirrored.Default.KeyboardArrowRight,
+                            contentDescription = ""
+                        )
+                    }
                 }
-                if (nutritionsBool.value) {
+                if (isNutritionExpanded) {
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(
-                        text = productDetail, style = TextStyle(
+                        text = cardData.productDetail, style = TextStyle(
                             fontWeight = FontWeight.Medium,
                             fontSize = 13.sp,
                             color = colorResource(id = R.color.grey)
@@ -362,24 +382,26 @@ fun DetailScreen(
                         Icon(
                             modifier = Modifier
                                 .size(30.dp)
-                                .clickable { reviewBool.value = !reviewBool.value },
-                            imageVector = if (reviewBool.value) Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowDown,
+                                .clickable { isReviewExpanded = !isReviewExpanded },
+                            imageVector = if (isReviewExpanded) Icons.Default.KeyboardArrowDown else Icons.AutoMirrored.Default.KeyboardArrowRight,
                             contentDescription = ""
                         )
                     }
-
                 }
-                if (reviewBool.value) {
+                if (isReviewExpanded) {
                     Text(
-                        text = productDetail, style = TextStyle(
+                        text = cardData.productDetail, style = TextStyle(
                             fontWeight = FontWeight.Medium,
                             fontSize = 13.sp,
                             color = colorResource(id = R.color.grey)
                         )
                     )
                 }
+                Spacer(modifier = Modifier.height(20.dp))
                 ButtonWidget(text = "Add To Basket")
+                Spacer(modifier = Modifier.height(40.dp))
             }
         }
+
     }
 }
