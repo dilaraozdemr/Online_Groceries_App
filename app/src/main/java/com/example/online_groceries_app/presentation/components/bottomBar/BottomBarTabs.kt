@@ -20,7 +20,7 @@ sealed class BottomBarTab(val title: String, val icon: ImageVector, val color: C
         title = "Explorer",
         icon = Icons.Rounded.Email,
         color = Color.Black,
-        route = "signup"
+        route = "explore"
     )
     data object Cart : BottomBarTab(
         title = "Cart",

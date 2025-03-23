@@ -1,27 +1,25 @@
 package com.example.online_groceries_app.presentation
 
 import android.annotation.SuppressLint
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
@@ -31,11 +29,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.rounded.Email
-import androidx.compose.material.icons.rounded.FavoriteBorder
-import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Person
-import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -43,52 +36,33 @@ import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
-import com.example.online_groceries_app.presentation.components.BestSellingWidget
-import com.example.online_groceries_app.presentation.components.ExclusiveWidget
-import com.example.online_groceries_app.presentation.components.GroceriesWidget
+import com.example.online_groceries_app.presentation.components.ExploreWidget
 import com.example.online_groceries_app.presentation.components.SearchBarWidget
-import com.example.online_groceries_app.presentation.components.bottomBar.BottomBarTab
 import com.example.online_groceries_app.presentation.data.CarouselItem
-import dev.chrisbanes.haze.HazeState
+import com.example.online_groceries_app.presentation.data.ExploreData
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "RememberReturnType")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier, navController: NavHostController) {
+@Preview
+fun ExploreScreen(modifier: Modifier = Modifier) {
     val scrollState = rememberScrollState()
-    var text by remember { mutableStateOf("") }
-    var active by remember { mutableStateOf(false) }
-    var items = remember {
-        mutableStateListOf(
-            "Coca Cola",
-            "Tomato",
-            "Banana"
-        )
-    }
     val images =
         listOf(
             CarouselItem(0, R.drawable.banner, R.string.signup_desc),
@@ -97,46 +71,87 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavHostController) 
             CarouselItem(3, R.drawable.banner, R.string.signup_desc),
             CarouselItem(4, R.drawable.banner, R.string.signup_desc),
         )
-
     val pagerState = rememberPagerState(pageCount = { images.size })
-
+    var active by remember { mutableStateOf(false) }
+    var text by remember { mutableStateOf("") }
+    var items = remember {
+        mutableStateListOf(
+            "Coca Cola",
+            "Tomato",
+            "Banana"
+        )
+    }
+    val exploreWidget = listOf(
+        ExploreData(
+            title = "Frash Fruits & Vegetable",
+            color = R.color.fruits,
+            image = R.drawable.fruits,
+            borderColor = R.color.fruits_border
+        ),
+        ExploreData(
+            title = "Cooking Oil & Ghee",
+            color = R.color.oil,
+            image = R.drawable.oil,
+            borderColor = R.color.oil_border
+        ),
+        ExploreData(
+            title = "Meat & Fish",
+            color = R.color.fish,
+            image = R.drawable.meatfish,
+            borderColor = R.color.fish_border
+        ),
+        ExploreData(
+            title = "Bakery & Snacks",
+            color = R.color.bakery,
+            image = R.drawable.bakery,
+            borderColor = R.color.bakery_border
+        ),
+        ExploreData(
+            title = "Dairy & Eggs",
+            color = R.color.dairy,
+            image = R.drawable.dairy,
+            borderColor = R.color.dairy_border
+        ),
+        ExploreData(
+            title = "Beverages",
+            color = R.color.beverages,
+            image = R.drawable.beverages,
+            borderColor = R.color.beverages_border
+        ),
+        ExploreData(
+            title = "Frash Fruits & Vegetable",
+            color = R.color.purple,
+            image = R.drawable.fruits,
+            borderColor = R.color.purple_border
+        ),
+        ExploreData(
+            title = "Frash Fruits & Vegetable",
+            color = R.color.pink,
+            image = R.drawable.bakery,
+            borderColor = R.color.pink_border
+        ),
+    )
     Scaffold(
         containerColor = Color.White,
-        modifier = Modifier.fillMaxSize()
-        .background(Color.White),
-    ){
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+    ) {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
-                .padding(top = 60.dp),
+            modifier = Modifier.fillMaxSize().padding(top = 60.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                modifier = Modifier.size(40.dp),
-                painter = painterResource(id = R.drawable.color_icon),
-                contentDescription = "icon"
+            Text(
+                text = "Find Products", style = TextStyle(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    lineHeight = 18.sp
+                )
             )
-            Spacer(modifier = Modifier.height(10.dp))
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    modifier = Modifier.size(20.dp),
-                    painter = painterResource(id = R.drawable.exclude),
-                    contentDescription = ""
-                )
-                Spacer(modifier = Modifier.width(5.dp))
-                Text(
-                    text = "Dhaka, Banassre", style = TextStyle(
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                )
-            }
             SearchBarWidget(
                 modifier = Modifier
-                    .fillMaxWidth().padding(horizontal = 24.dp),
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp),
                 query = text,
                 onQueryChange = {
                     text = it
@@ -187,54 +202,21 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavHostController) 
                     }
                 }
             }
-                HorizontalPager(
-                    state = pagerState,
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
-                ) { page ->
-                    Box(modifier = Modifier.fillMaxWidth()) {
-                    Image(
-                        painter = painterResource(id = images[page].imageResId),
-                        contentDescription = null,
+            Spacer(modifier = Modifier.height(20.dp))
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier.padding(horizontal = 20.dp)
+            ) {
+                items(exploreWidget) { item ->
+                    ExploreWidget(
+                        data = item,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(205.dp),
-                        contentScale = ContentScale.Fit
                     )
-                        Row(
-                            horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.Bottom,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 8.dp)
-                                .align(Alignment.BottomEnd)
-                        ) {
-                            images.indices.forEach { index ->
-                                val isSelected = pagerState.currentPage == index
-                                Box(
-                                    modifier = Modifier
-                                        .padding(4.dp)
-                                        .height(10.dp)
-                                        .width(if (isSelected) 20.dp else 10.dp)
-                                        .background(
-                                            color = if (isSelected) colorResource(id = R.color.splash_background_green) else Color.Gray,
-                                            shape = RoundedCornerShape(50)
-                                        )
-                                )
-                            }
-                        }
-
                 }
-
             }
-            Spacer(modifier = Modifier.height(30.dp))
-            ExclusiveWidget(navController = navController)
-            Spacer(modifier = Modifier.height(30.dp))
-            BestSellingWidget(navController = navController)
-            Spacer(modifier = Modifier.height(30.dp))
-            GroceriesWidget(navController = navController)
         }
     }
 }
-
-
-

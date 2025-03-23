@@ -8,11 +8,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.online_groceries_app.presentation.components.AppNavigation
@@ -35,6 +43,7 @@ class MainActivity : ComponentActivity() {
             }
 
             Scaffold(
+                containerColor = Color.White,
                 bottomBar = {
                     AnimatedVisibility(
                         visible = shouldShowBottomBar,
@@ -44,8 +53,14 @@ class MainActivity : ComponentActivity() {
                         BottomBarNav(navController)
                     }
                 }
-            ) {
-                AppNavigation(navController)
+            ) {paddingValues->
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(bottom = paddingValues.calculateBottomPadding())
+                )  {
+                    AppNavigation(navController)
+                }
             }
         }
     }

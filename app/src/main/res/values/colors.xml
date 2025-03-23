@@ -10,4 +10,20 @@
     <color name="groceries_three">#FFD3B0E0</color>
     <color name="groceries_four">#FFF7A593</color>
     <color name="star">#FFF3603F</color>
+    <color name="fruits">#FFEEF7F1</color>
+    <color name="fruits_border">#FF8FCCA5</color>
+    <color name="oil">#FFFEF6ED</color>
+    <color name="oil_border">#FFFBCB98</color>
+    <color name="fish">#FFFDE9E3</color>
+    <color name="fish_border">#FFF9B6A7</color>
+    <color name="bakery">#FFF4EBF7</color>
+    <color name="bakery_border">#FFDBBFE6</color>
+    <color name="dairy">#FFFFF9E5</color>
+    <color name="dairy_border">#FFFEF2CB</color>
+    <color name="beverages">#FFEDF7FD</color>
+    <color name="beverages_border">#FFC9E7F7</color>
+    <color name="purple">#FFE5E2F5</color>
+    <color name="purple_border">#FFC4B9FA</color>
+    <color name="pink">#FFF5DEE7</color>
+    <color name="pink_border">#FFEBA3BF</color>
 </resources>

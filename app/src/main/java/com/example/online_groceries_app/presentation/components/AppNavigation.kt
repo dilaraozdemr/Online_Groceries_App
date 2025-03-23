@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -12,6 +13,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.online_groceries_app.presentation.DetailScreen
+import com.example.online_groceries_app.presentation.ExploreScreen
 import com.example.online_groceries_app.presentation.HomeScreen
 import com.example.online_groceries_app.presentation.OnboardingPage
 import com.example.online_groceries_app.presentation.SignInScreen
@@ -42,5 +44,6 @@ fun AppNavigation(navController: NavHostController) {
 
             DetailScreen(cardData = cardData, navHostController = navController)
         }
+        composable("explore") { ExploreScreen() }
     }
 }
