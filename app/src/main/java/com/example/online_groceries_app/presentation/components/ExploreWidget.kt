@@ -3,6 +3,7 @@ package com.example.online_groceries_app.presentation.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,12 +24,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.online_groceries_app.presentation.data.ExploreData
+import com.google.gson.Gson
+import java.net.URLEncoder
 
 @Composable
 fun ExploreWidget(
     modifier: Modifier = Modifier,
-    data: ExploreData
+    data: ExploreData,
+    navController: NavHostController
 ) {
     Box(
         modifier = modifier
@@ -40,7 +45,14 @@ fun ExploreWidget(
                 width = 1.dp,
                 color = colorResource(id =data.borderColor) ,
                 shape = RoundedCornerShape(18.dp)
-            )
+            ).clickable {
+                val gson = Gson()
+                val json = gson.toJson(data)
+                val encodedJson = URLEncoder.encode(json, "UTF-8")
+
+                navController.navigate("exploreDetail/$encodedJson")
+
+            }
     ) {
         Column(
             modifier = Modifier.fillMaxSize().padding(vertical = 40.dp, horizontal = 20.dp),
@@ -52,7 +64,7 @@ fun ExploreWidget(
                 painter = painterResource(id = data.image), contentDescription = "image")
             Spacer(modifier = Modifier.height(28.dp))
             Text(
-                text = data.title,
+                text = data.formattedTitle,
                 textAlign = TextAlign.Center,
                 maxLines = 2,
                 style = TextStyle(

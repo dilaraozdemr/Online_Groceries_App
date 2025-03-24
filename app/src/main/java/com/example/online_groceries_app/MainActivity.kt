@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
             val shouldShowBottomBar by remember {
                 derivedStateOf {
                     val route = currentBackStackEntry?.destination?.route
-                    route?.startsWith("detail") == false
+                    route?.startsWith("cardDetail") == false
                 }
             }
 

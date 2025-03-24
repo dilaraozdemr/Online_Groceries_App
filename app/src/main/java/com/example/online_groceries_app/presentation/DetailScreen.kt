@@ -126,7 +126,7 @@ fun DetailScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = cardData.title, style = TextStyle(
+                        text = cardData.formattedTitle, style = TextStyle(
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                             lineHeight = 18.sp,
@@ -245,7 +245,7 @@ fun DetailScreen(
                 if (isProductDetailExpanded) {
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
-                        text = cardData.productDetail, style = TextStyle(
+                        text = cardData.formattedProductDetail, style = TextStyle(
                             fontWeight = FontWeight.Medium,
                             fontSize = 13.sp,
                             color = colorResource(id = R.color.grey)
@@ -302,7 +302,7 @@ fun DetailScreen(
                 if (isNutritionExpanded) {
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(
-                        text = cardData.productDetail, style = TextStyle(
+                        text = cardData.formattedProductDetail, style = TextStyle(
                             fontWeight = FontWeight.Medium,
                             fontSize = 13.sp,
                             color = colorResource(id = R.color.grey)
@@ -390,7 +390,7 @@ fun DetailScreen(
                 }
                 if (isReviewExpanded) {
                     Text(
-                        text = cardData.productDetail, style = TextStyle(
+                        text = cardData.formattedProductDetail, style = TextStyle(
                             fontWeight = FontWeight.Medium,
                             fontSize = 13.sp,
                             color = colorResource(id = R.color.grey)

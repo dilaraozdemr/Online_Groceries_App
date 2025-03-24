@@ -51,17 +51,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.components.ExploreWidget
 import com.example.online_groceries_app.presentation.components.SearchBarWidget
+import com.example.online_groceries_app.presentation.data.CardData
 import com.example.online_groceries_app.presentation.data.CarouselItem
 import com.example.online_groceries_app.presentation.data.ExploreData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-@Preview
-fun ExploreScreen(modifier: Modifier = Modifier) {
+fun ExploreScreen(
+    modifier: Modifier = Modifier,
+    navController: NavHostController
+) {
     val scrollState = rememberScrollState()
     val images =
         listOf(
@@ -86,49 +90,425 @@ fun ExploreScreen(modifier: Modifier = Modifier) {
             title = "Frash Fruits & Vegetable",
             color = R.color.fruits,
             image = R.drawable.fruits,
-            borderColor = R.color.fruits_border
+            borderColor = R.color.fruits_border,
+            cardDataList = listOf(
+                CardData(
+                    imageResId = R.drawable.redpepper,
+                    title = "Organic Red Pepper",
+                    amount = 6.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 1,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 3,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 5,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+            )
         ),
         ExploreData(
             title = "Cooking Oil & Ghee",
             color = R.color.oil,
             image = R.drawable.oil,
-            borderColor = R.color.oil_border
+            borderColor = R.color.oil_border,
+            cardDataList = listOf(
+                CardData(
+                    imageResId = R.drawable.redpepper,
+                    title = "Organic Red Pepper",
+                    amount = 6.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 1,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 3,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 5,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+            )
         ),
         ExploreData(
             title = "Meat & Fish",
             color = R.color.fish,
             image = R.drawable.meatfish,
-            borderColor = R.color.fish_border
+            borderColor = R.color.fish_border,
+            cardDataList = listOf(
+                CardData(
+                    imageResId = R.drawable.redpepper,
+                    title = "Organic Red Pepper",
+                    amount = 6.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 1,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 3,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 5,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+            )
         ),
         ExploreData(
             title = "Bakery & Snacks",
             color = R.color.bakery,
             image = R.drawable.bakery,
-            borderColor = R.color.bakery_border
+            borderColor = R.color.bakery_border,
+            cardDataList = listOf(
+                CardData(
+                    imageResId = R.drawable.redpepper,
+                    title = "Organic Red Pepper",
+                    amount = 6.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 1,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 3,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 5,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+            )
         ),
         ExploreData(
             title = "Dairy & Eggs",
             color = R.color.dairy,
             image = R.drawable.dairy,
-            borderColor = R.color.dairy_border
+            borderColor = R.color.dairy_border,
+            cardDataList = listOf(
+                CardData(
+                    imageResId = R.drawable.redpepper,
+                    title = "Organic Red Pepper",
+                    amount = 6.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 1,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 3,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 5,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+            )
         ),
         ExploreData(
             title = "Beverages",
             color = R.color.beverages,
             image = R.drawable.beverages,
-            borderColor = R.color.beverages_border
+            borderColor = R.color.beverages_border,
+            cardDataList = listOf(
+                CardData(
+                    imageResId = R.drawable.redpepper,
+                    title = "Organic Red Pepper",
+                    amount = 6.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 1,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 3,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 5,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+            )
         ),
         ExploreData(
             title = "Frash Fruits & Vegetable",
             color = R.color.purple,
             image = R.drawable.fruits,
-            borderColor = R.color.purple_border
+            borderColor = R.color.purple_border,
+            cardDataList = listOf(
+                CardData(
+                    imageResId = R.drawable.redpepper,
+                    title = "Organic Red Pepper",
+                    amount = 6.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 1,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 3,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 5,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+            )
         ),
         ExploreData(
             title = "Frash Fruits & Vegetable",
             color = R.color.pink,
             image = R.drawable.bakery,
-            borderColor = R.color.pink_border
+            borderColor = R.color.pink_border,
+            cardDataList = listOf(
+                CardData(
+                    imageResId = R.drawable.redpepper,
+                    title = "Organic Red Pepper",
+                    amount = 6.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 1,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 3,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.artichoke,
+                    title = "Artichoke",
+                    amount = 21.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 2,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+                CardData(
+                    imageResId = R.drawable.banana,
+                    title = "Organic Bananas",
+                    amount = 4.99,
+                    desc = "7pcs, Priceg",
+                    cardId = 5,
+                    productDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                    total = 1
+                ),
+            )
         ),
     )
     Scaffold(
@@ -212,6 +592,7 @@ fun ExploreScreen(modifier: Modifier = Modifier) {
                 items(exploreWidget) { item ->
                     ExploreWidget(
                         data = item,
+                        navController = navController,
                         modifier = Modifier
                             .fillMaxWidth()
                     )
