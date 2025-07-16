@@ -26,7 +26,7 @@ sealed class BottomBarTab(val title: String, val icon: ImageVector, val color: C
         title = "Cart",
         icon = Icons.Rounded.ShoppingCart,
         color = Color.Black,
-        route = "sigin"
+        route = "myCart"
     )
     data object Favourite : BottomBarTab(
         title = "Explorer",

@@ -16,6 +16,7 @@ import com.example.online_groceries_app.presentation.DetailScreen
 import com.example.online_groceries_app.presentation.ExploreDetailScreen
 import com.example.online_groceries_app.presentation.ExploreScreen
 import com.example.online_groceries_app.presentation.HomeScreen
+import com.example.online_groceries_app.presentation.MyCartScreen
 import com.example.online_groceries_app.presentation.OnboardingPage
 import com.example.online_groceries_app.presentation.SignInScreen
 import com.example.online_groceries_app.presentation.SignUpScreen
@@ -57,5 +58,6 @@ fun AppNavigation(navController: NavHostController) {
                 navController.popBackStack()
             }
         }
+        composable("myCart") { MyCartScreen() }
     }
 }
