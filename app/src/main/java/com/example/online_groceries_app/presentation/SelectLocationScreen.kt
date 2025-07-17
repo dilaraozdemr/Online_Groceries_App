@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -44,14 +45,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.components.ButtonWidget
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Preview
 @Composable
-fun SelectLocationScreen(modifier: Modifier = Modifier) {
+fun SelectLocationScreen(
+    navController: NavHostController,
+    modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val locations = arrayOf("Zonguldak", "Çankırı", "Ankara", "Samsun", "Trabzon")
     var expanded by remember { mutableStateOf(false) }
@@ -61,8 +64,10 @@ fun SelectLocationScreen(modifier: Modifier = Modifier) {
     var expandedTwo by remember { mutableStateOf(false) }
     var selectedTextArea by remember { mutableStateOf("Types of your area") }
 
-    Scaffold {
-        Box {
+    Scaffold {contentPadding->
+        Box (
+            modifier.padding(contentPadding)
+        ){
             Image(
                 modifier = Modifier.fillMaxWidth(),
                 painter = painterResource(id = R.drawable.number_back),
@@ -71,7 +76,7 @@ fun SelectLocationScreen(modifier: Modifier = Modifier) {
             )
             Column {
                 Icon(
-                    modifier = Modifier.padding(25.dp),
+                    modifier = Modifier.padding(25.dp).clickable { navController.popBackStack() },
                     imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "back"
                 )
                 Column(
@@ -215,8 +220,8 @@ fun SelectLocationScreen(modifier: Modifier = Modifier) {
                         .fillMaxWidth()
                     )
                 }
-                Spacer(modifier = Modifier.height(40.dp))
-                ButtonWidget(text = "Submit", onClick = {})
+                Spacer(modifier = Modifier.height(30.dp))
+                ButtonWidget(text = "Submit", onClick = {navController.navigate("login")})
             }
         }
     }

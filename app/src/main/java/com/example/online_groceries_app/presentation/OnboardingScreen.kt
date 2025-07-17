@@ -30,11 +30,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
+import com.example.online_groceries_app.presentation.components.ButtonWidget
 
-@Preview
 @Composable
-fun OnboardingPage(modifier: Modifier = Modifier) {
+fun OnboardingPage(
+    navController: NavHostController,
+    modifier: Modifier = Modifier) {
     Box(
         modifier = modifier.fillMaxSize()
     ) {
@@ -89,28 +92,9 @@ fun OnboardingPage(modifier: Modifier = Modifier) {
                 )
             )
             Spacer(modifier = Modifier.height(40.88.dp))
-            Box(
-                modifier = Modifier
-                    .background(
-                        shape = RoundedCornerShape(19),
-                        color = colorResource(id = R.color.splash_background_green)
-                    )
-            ) {
-                Text(
-                    modifier = Modifier.padding(
-                        horizontal = 127.dp,
-                        vertical = 24.5.dp
-                    ),
-                    text = "Get Started",
-                    style = TextStyle(
-                        fontSize = 18.sp,
-                        lineHeight = 18.sp,
-                        letterSpacing = 0.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = Color.White
-                    )
-                )
-            }
+            ButtonWidget("Get Started", onClick = {
+                navController.navigate("signin")
+            })
             Spacer(modifier = Modifier.height(90.66.dp))
         }
     }

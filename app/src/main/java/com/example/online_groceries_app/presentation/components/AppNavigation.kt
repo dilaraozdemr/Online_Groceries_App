@@ -18,12 +18,16 @@ import com.example.online_groceries_app.presentation.ExploreDetailScreen
 import com.example.online_groceries_app.presentation.ExploreScreen
 import com.example.online_groceries_app.presentation.FavouriteScreen
 import com.example.online_groceries_app.presentation.HomeScreen
+import com.example.online_groceries_app.presentation.LogInScreen
 import com.example.online_groceries_app.presentation.MyCartScreen
+import com.example.online_groceries_app.presentation.NumberScreen
 import com.example.online_groceries_app.presentation.OnboardingPage
 import com.example.online_groceries_app.presentation.OrderAccepted
+import com.example.online_groceries_app.presentation.SelectLocationScreen
 import com.example.online_groceries_app.presentation.SignInScreen
 import com.example.online_groceries_app.presentation.SignUpScreen
 import com.example.online_groceries_app.presentation.SplashScreen
+import com.example.online_groceries_app.presentation.VerificationScreen
 import com.example.online_groceries_app.presentation.data.CardData
 import com.example.online_groceries_app.presentation.data.ExploreData
 import com.google.gson.Gson
@@ -34,12 +38,16 @@ import java.net.URLDecoder
 fun AppNavigation(navController: NavHostController) {
     val gson = Gson()
 
-    NavHost(navController = navController, startDestination = "home") {
+    NavHost(navController = navController, startDestination = "splash") {
         composable("home") { HomeScreen(navController = navController) }
-        composable("signup") { SignUpScreen() }
-        composable("sigin") { SignInScreen() }
-        composable("splash") { SplashScreen() }
-        composable("onBoarding") { OnboardingPage() }
+        composable("signup") { SignUpScreen(navController = navController) }
+        composable("login") { LogInScreen(navController = navController) }
+        composable("number") { NumberScreen(navController = navController) }
+        composable("location") { SelectLocationScreen(navController = navController) }
+        composable("verification") { VerificationScreen(navController = navController) }
+        composable("signin") { SignInScreen(navController = navController) }
+        composable("splash") { SplashScreen(navController = navController) }
+        composable("onBoarding") { OnboardingPage(navController = navController) }
         composable("cardDetail/{cardData}") { backStackEntry ->
             val json = backStackEntry.arguments?.getString("cardData")
             val data = Gson().fromJson(json, CardData::class.java)

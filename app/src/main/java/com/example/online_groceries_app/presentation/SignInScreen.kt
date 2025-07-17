@@ -49,13 +49,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun SignInScreen(modifier: Modifier = Modifier) {
+fun SignInScreen(
+    navController: NavHostController,
+    modifier: Modifier = Modifier) {
     var mobileNumber by remember { mutableStateOf("") }
     Scaffold {
         Column {
@@ -123,6 +124,8 @@ fun SignInScreen(modifier: Modifier = Modifier) {
                 Box (
                     modifier= Modifier
                         .fillMaxWidth()
+                        .clip(RoundedCornerShape(19.dp))
+                        .clickable { navController.navigate("number") }
                         .background(
                             shape = RoundedCornerShape(19.dp),
                             color = colorResource(id = R.color.google_button_blue)

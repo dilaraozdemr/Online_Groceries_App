@@ -43,14 +43,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.components.ButtonWidget
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-@Preview
-fun SignUpScreen(modifier: Modifier = Modifier) {
+fun SignUpScreen(
+    navController: NavHostController,
+    modifier: Modifier = Modifier) {
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -233,7 +235,7 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
                     )
                 }
                 Spacer(modifier = Modifier.height(30.dp))
-                ButtonWidget(text = "Log In", onClick = {})
+                ButtonWidget(text = "Log In", onClick = {navController.navigate("home")})
                 Spacer(modifier = Modifier.height(30.dp))
                 Row (
                     modifier = Modifier.fillMaxWidth(),

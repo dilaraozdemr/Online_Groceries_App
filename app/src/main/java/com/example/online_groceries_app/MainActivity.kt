@@ -38,7 +38,13 @@ class MainActivity : ComponentActivity() {
             val shouldShowBottomBar by remember {
                 derivedStateOf {
                     val route = currentBackStackEntry?.destination?.route
-                    route?.startsWith("cardDetail") == false
+                    route != null && (
+                            route.startsWith("home") ||
+                                    route.startsWith("explore") ||
+                                    route.startsWith("myCart") ||
+                                    route.startsWith("favourite") ||
+                                    route.startsWith("account")
+                            )
                 }
             }
 

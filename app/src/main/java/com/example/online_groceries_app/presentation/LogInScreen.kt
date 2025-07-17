@@ -46,14 +46,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.components.ButtonWidget
 
-@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Preview
 @Composable
-fun LogInScreen(modifier: Modifier = Modifier) {
+fun LogInScreen(
+    navController : NavHostController,
+        modifier: Modifier = Modifier) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var visibility by remember {
@@ -173,7 +174,7 @@ fun LogInScreen(modifier: Modifier = Modifier) {
                         fontWeight = FontWeight.W400
                     )
                 )
-                ButtonWidget(text = "Log In", onClick = {})
+                ButtonWidget(text = "Log In", onClick = {navController.navigate("signup")})
                 Spacer(modifier = Modifier.height(30.dp))
                 Row (
                     modifier = Modifier.fillMaxWidth(),

@@ -3,6 +3,7 @@ package com.example.online_groceries_app.presentation
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
@@ -45,19 +47,20 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun NumberScreen(modifier: Modifier = Modifier) {
+fun NumberScreen(
+    navController : NavHostController,
+    modifier: Modifier = Modifier) {
     var mobileNumber by remember { mutableStateOf("") }
     Scaffold(
         modifier = modifier.imePadding()
-    ) {
+    ) {contentPadding->
         Box(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize().padding(contentPadding)
         ) {
             Image(
                 modifier = Modifier.fillMaxWidth(),
@@ -68,7 +71,9 @@ fun NumberScreen(modifier: Modifier = Modifier) {
             Column{
                 IconButton(
                     modifier = Modifier.padding(10.dp),
-                    onClick = {}) {
+                    onClick = {
+                        navController.popBackStack()
+                    }) {
                     Icon(
                         modifier = Modifier.size(30.dp),
                         imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "arrow",
@@ -146,6 +151,8 @@ fun NumberScreen(modifier: Modifier = Modifier) {
                         color = colorResource(id = R.color.splash_background_green),
                         shape = CircleShape
                     )
+                    .clip(RoundedCornerShape(19.dp))
+                    .clickable { navController.navigate("verification") }
                     .size(67.dp)
                     .align(Alignment.BottomEnd)
             ){
