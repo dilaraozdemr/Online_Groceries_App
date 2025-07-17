@@ -38,7 +38,7 @@ sealed class BottomBarTab(val title: String, val icon: ImageVector, val color: C
         title = "Profile",
         icon = Icons.Rounded.Person,
         color = Color.Black,
-        route = "onBoarding"
+        route = "account"
     )
 }
 

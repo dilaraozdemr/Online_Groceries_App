@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.online_groceries_app.presentation.AccountScreen
 import com.example.online_groceries_app.presentation.DetailScreen
 import com.example.online_groceries_app.presentation.ExploreDetailScreen
 import com.example.online_groceries_app.presentation.ExploreScreen
@@ -61,5 +62,6 @@ fun AppNavigation(navController: NavHostController) {
         }
         composable("myCart") { MyCartScreen() }
         composable("favourite") { FavouriteScreen() }
+        composable("account") { AccountScreen() }
     }
 }
