@@ -37,6 +37,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -44,13 +45,16 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.components.AccountWidget
 import com.example.online_groceries_app.presentation.data.MenuItem
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun AccountScreen(modifier: Modifier = Modifier) {
+fun AccountScreen(
+    navController: NavHostController,
+    modifier: Modifier = Modifier) {
     val menuItems = listOf(
         MenuItem("Orders", Icons.Filled.ShoppingCart),
         MenuItem("My Details", Icons.Filled.Person),
@@ -107,6 +111,7 @@ fun AccountScreen(modifier: Modifier = Modifier) {
                 }
 
             }
+            Spacer(modifier.height(20.dp))
             Divider(
                 color = Color.LightGray,
                 thickness = 1.dp,
@@ -150,7 +155,11 @@ fun AccountScreen(modifier: Modifier = Modifier) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(60.dp),
+                        .height(60.dp)
+                        .clip(RoundedCornerShape(19.dp))
+                        .clickable {
+                            navController.navigate("orderAccepted")
+                        },
                     contentAlignment = Alignment.Center
                 ) {
                     Text(

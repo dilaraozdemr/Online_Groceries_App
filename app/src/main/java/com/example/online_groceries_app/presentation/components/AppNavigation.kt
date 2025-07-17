@@ -20,6 +20,7 @@ import com.example.online_groceries_app.presentation.FavouriteScreen
 import com.example.online_groceries_app.presentation.HomeScreen
 import com.example.online_groceries_app.presentation.MyCartScreen
 import com.example.online_groceries_app.presentation.OnboardingPage
+import com.example.online_groceries_app.presentation.OrderAccepted
 import com.example.online_groceries_app.presentation.SignInScreen
 import com.example.online_groceries_app.presentation.SignUpScreen
 import com.example.online_groceries_app.presentation.SplashScreen
@@ -62,6 +63,7 @@ fun AppNavigation(navController: NavHostController) {
         }
         composable("myCart") { MyCartScreen() }
         composable("favourite") { FavouriteScreen() }
-        composable("account") { AccountScreen() }
+        composable("account") { AccountScreen(navController = navController) }
+        composable("orderAccepted") { OrderAccepted(navController = navController) }
     }
 }
