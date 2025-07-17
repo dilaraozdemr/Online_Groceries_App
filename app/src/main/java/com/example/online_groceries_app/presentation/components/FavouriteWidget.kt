@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,52 +29,61 @@ import com.example.online_groceries_app.presentation.data.CardData
 
 @Composable
 fun FavouriteWidget(modifier: Modifier = Modifier, cardData: CardData) {
-    Box(
-        modifier.fillMaxWidth().padding(10.dp)
-    ){
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+    Column {
+        Box(
+            modifier.fillMaxWidth().padding(10.dp)
+        ){
             Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Image(painter = painterResource(cardData.imageResId), contentDescription = "",
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp))
-                Column {
-                    Text(cardData.title, style = TextStyle(
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(painter = painterResource(cardData.imageResId), contentDescription = "",
+                        modifier = Modifier
+                            .width(100.dp)
+                            .height(100.dp))
+                    Column {
+                        Text(cardData.title, style = TextStyle(
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        ))
+                        Text(cardData.desc, style = TextStyle(
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Gray
+                        ))
+                    }
+                }
+                Spacer(modifier = Modifier.width(20.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("$${cardData.amount.toString()}", style = TextStyle(
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.SemiBold,
                         color = Color.Black
                     ))
-                    Text(cardData.desc, style = TextStyle(
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Gray
-                    ))
+                    Icon(
+                        imageVector = Icons.Default.KeyboardArrowRight,
+                        tint = Color.Black,
+                        contentDescription ="",
+                        modifier = Modifier.size(40.dp)
+                    )
                 }
             }
-            Spacer(modifier = Modifier.width(20.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.End,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text("$${cardData.amount.toString()}", style = TextStyle(
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color.Black
-                ))
-                Icon(
-                    imageVector = Icons.Default.KeyboardArrowRight,
-                    tint = Color.Black,
-                    contentDescription ="",
-                    modifier = Modifier.size(40.dp)
-                )
-            }
         }
+        Divider(
+            color = Color.LightGray,
+            thickness = 1.dp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp)
+        )
     }
 
 }

@@ -166,13 +166,6 @@ fun MyCartScreen(modifier: Modifier = Modifier) {
                         cardData = item,
                         modifier = Modifier.padding(all = 10.dp)
                     )
-                    Divider(
-                        color = Color.LightGray,
-                        thickness = 1.dp,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 10.dp)
-                    )
                 }
             }
             ButtonWidget(

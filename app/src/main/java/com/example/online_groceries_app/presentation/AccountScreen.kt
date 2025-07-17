@@ -78,12 +78,11 @@ fun AccountScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.banana),
+                    painter = painterResource(id = R.drawable.alert),
                     contentDescription = "Banana",
                     modifier = Modifier
                         .size(100.dp)
                         .clip(CircleShape)
-                        .border(width = 1.dp, color = Color.Black)
 
                 )
                 Spacer(modifier.width(20.dp))
@@ -99,7 +98,7 @@ fun AccountScreen(
                             modifier = Modifier
                                 .size(20.dp),
                             imageVector = Icons.Filled.Create, contentDescription = "",
-                            tint = Color.Green
+                            tint = colorResource(R.color.fruits_border)
                         )
                     }
                     Text("emily@gmail.com", style = TextStyle(
@@ -121,7 +120,6 @@ fun AccountScreen(
             )
             LazyVerticalGrid(
                 columns = GridCells.Fixed(1),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = Modifier
                     .weight(1f)
@@ -131,13 +129,6 @@ fun AccountScreen(
                     AccountWidget(
                         title = item.title,
                         icon = item.icon
-                    )
-                    Divider(
-                        color = Color.LightGray,
-                        thickness = 1.dp,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 10.dp)
                     )
                 }
             }

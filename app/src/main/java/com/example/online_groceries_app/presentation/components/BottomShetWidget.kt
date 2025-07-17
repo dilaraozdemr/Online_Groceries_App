@@ -53,7 +53,7 @@ fun CheckoutBottomSheetContent() {
                 .height(55.dp),
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF53B175)),
-            onClick = { /* Place order */ }
+            onClick = { }
         ) {
             Text("Place Order", color = Color.White)
         }
