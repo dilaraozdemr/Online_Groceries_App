@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.components.ButtonWidget
 import com.example.online_groceries_app.presentation.components.FavouriteWidget
+import com.example.online_groceries_app.presentation.components.OrderFailedDialog
 import com.example.online_groceries_app.presentation.data.CardData
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -174,17 +175,17 @@ fun FavouriteScreen(){
                     .fillMaxWidth()
             )
         }
-        if (showDialog) {
-            AlertDialog(
-                onDismissRequest = { showDialog = false },
-                title = { Text("Success") },
-                text = { Text("All items have been added to your cart.") },
-                confirmButton = {
-                    TextButton(onClick = { showDialog = false }) {
-                        Text("OK")
-                    }
-                }
-            )
-        }
+        OrderFailedDialog(
+            showDialog = showDialog,
+            onDismiss = { showDialog = false },
+            onTryAgain = {
+                showDialog = false
+            },
+            onBackToHome = {
+                showDialog = false
+            }
+        )
+
     }
+
 }
