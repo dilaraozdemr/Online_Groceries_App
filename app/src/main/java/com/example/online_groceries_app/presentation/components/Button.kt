@@ -27,6 +27,7 @@ fun ButtonWidget(
     Box(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(horizontal = 20.dp)
             .background(
                 color = colorResource(id = R.color.splash_background_green),
                 shape = RoundedCornerShape(19.dp)

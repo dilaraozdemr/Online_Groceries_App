@@ -169,8 +169,7 @@ fun MyCartScreen(modifier: Modifier = Modifier) {
                 text = "Go To Checkout",
                 onClick = {},
                 modifier = Modifier
-                    .padding(all = 10.dp)
-                    .fillMaxWidth()
+                    .padding(vertical = 30.dp)
             )
         }
     }
