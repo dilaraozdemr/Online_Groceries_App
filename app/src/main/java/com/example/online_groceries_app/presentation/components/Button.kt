@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
@@ -32,6 +33,7 @@ fun ButtonWidget(
                 color = colorResource(id = R.color.splash_background_green),
                 shape = RoundedCornerShape(19.dp)
             )
+            .clip(RoundedCornerShape(19.dp))
             .clickable {onClick()}
 
     ){

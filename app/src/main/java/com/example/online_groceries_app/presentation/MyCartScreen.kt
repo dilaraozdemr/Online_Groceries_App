@@ -28,10 +28,20 @@ import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.components.ButtonWidget
 import com.example.online_groceries_app.presentation.components.MyCartWidget
 import com.example.online_groceries_app.presentation.data.CardData
+import androidx.compose.material3.*
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.runtime.rememberCoroutineScope
+import com.example.online_groceries_app.presentation.components.CheckoutBottomSheetContent
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MyCartScreen(modifier: Modifier = Modifier) {
+    val sheetState = rememberModalBottomSheetState()
+    val coroutineScope = rememberCoroutineScope()
+    var showBottomSheet by remember { mutableStateOf(false) }
     val cardData = listOf(
         CardData(
             imageResId = R.drawable.redpepper,
@@ -167,10 +177,22 @@ fun MyCartScreen(modifier: Modifier = Modifier) {
             }
             ButtonWidget(
                 text = "Go To Checkout",
-                onClick = {},
+                onClick = {
+                    coroutineScope.launch {
+                        showBottomSheet = true
+                    }
+                },
                 modifier = Modifier
                     .padding(vertical = 30.dp)
             )
+        }
+        if (showBottomSheet) {
+            ModalBottomSheet(
+                onDismissRequest = { showBottomSheet = false },
+                sheetState = sheetState
+            ) {
+                CheckoutBottomSheetContent()
+            }
         }
     }
 }
