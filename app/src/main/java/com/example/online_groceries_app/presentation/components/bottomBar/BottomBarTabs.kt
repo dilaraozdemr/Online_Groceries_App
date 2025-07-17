@@ -32,7 +32,7 @@ sealed class BottomBarTab(val title: String, val icon: ImageVector, val color: C
         title = "Explorer",
         icon = Icons.Rounded.FavoriteBorder,
         color = Color.Black,
-        route = "splash"
+        route = "favourite"
     )
     data object Profile : BottomBarTab(
         title = "Profile",

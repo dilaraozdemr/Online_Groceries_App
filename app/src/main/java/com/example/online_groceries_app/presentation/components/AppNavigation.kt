@@ -15,6 +15,7 @@ import androidx.navigation.navArgument
 import com.example.online_groceries_app.presentation.DetailScreen
 import com.example.online_groceries_app.presentation.ExploreDetailScreen
 import com.example.online_groceries_app.presentation.ExploreScreen
+import com.example.online_groceries_app.presentation.FavouriteScreen
 import com.example.online_groceries_app.presentation.HomeScreen
 import com.example.online_groceries_app.presentation.MyCartScreen
 import com.example.online_groceries_app.presentation.OnboardingPage
@@ -59,5 +60,6 @@ fun AppNavigation(navController: NavHostController) {
             }
         }
         composable("myCart") { MyCartScreen() }
+        composable("favourite") { FavouriteScreen() }
     }
 }

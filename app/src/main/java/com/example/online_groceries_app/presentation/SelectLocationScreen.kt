@@ -216,7 +216,7 @@ fun SelectLocationScreen(modifier: Modifier = Modifier) {
                     )
                 }
                 Spacer(modifier = Modifier.height(40.dp))
-                ButtonWidget(text = "Submit")
+                ButtonWidget(text = "Submit", onClick = {})
             }
         }
     }

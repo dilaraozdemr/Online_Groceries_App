@@ -398,7 +398,7 @@ fun DetailScreen(
                     )
                 }
                 Spacer(modifier = Modifier.height(20.dp))
-                ButtonWidget(text = "Add To Basket")
+                ButtonWidget(text = "Add To Basket", onClick = {})
                 Spacer(modifier = Modifier.height(40.dp))
             }
         }

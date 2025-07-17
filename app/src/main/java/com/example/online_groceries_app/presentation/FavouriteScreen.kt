@@ -1,8 +1,11 @@
 package com.example.online_groceries_app.presentation
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -26,12 +29,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.online_groceries_app.R
 import com.example.online_groceries_app.presentation.components.ButtonWidget
-import com.example.online_groceries_app.presentation.components.MyCartWidget
+import com.example.online_groceries_app.presentation.components.FavouriteWidget
 import com.example.online_groceries_app.presentation.data.CardData
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MyCartScreen(modifier: Modifier = Modifier) {
+fun FavouriteScreen(){
     val cardData = listOf(
         CardData(
             imageResId = R.drawable.redpepper,
@@ -115,19 +118,17 @@ fun MyCartScreen(modifier: Modifier = Modifier) {
             total = 1
         ),
     )
-
+    var showDialog by remember { mutableStateOf(false) }
     Scaffold(
-        modifier = modifier.background(Color.White).fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         containerColor = Color.White
-    ) { contentPadding ->
+    ) {contentPadding->
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(contentPadding)
+            modifier = Modifier.padding(contentPadding)
         ) {
             Text(
-                text = "My Cart",
+                text = "Favourite",
                 textAlign = TextAlign.Center,
                 style = TextStyle(
                     fontSize = 20.sp,
@@ -141,8 +142,7 @@ fun MyCartScreen(modifier: Modifier = Modifier) {
                 thickness = 1.dp,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 10.dp)
-            )
+                    .padding(horizontal = 10.dp))
             LazyVerticalGrid(
                 columns = GridCells.Fixed(1),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -150,9 +150,8 @@ fun MyCartScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = 20.dp)
-            ) {
-                items(cardData) { item ->
-                    MyCartWidget(
+            ) {items(cardData) { item ->
+                    FavouriteWidget(
                         cardData = item,
                         modifier = Modifier.padding(all = 10.dp)
                     )
@@ -166,11 +165,25 @@ fun MyCartScreen(modifier: Modifier = Modifier) {
                 }
             }
             ButtonWidget(
-                text = "Go To Checkout",
-                onClick = {},
+                text = "Add All To Cart",
+                onClick = {
+                    showDialog = true
+                },
                 modifier = Modifier
                     .padding(all = 10.dp)
                     .fillMaxWidth()
+            )
+        }
+        if (showDialog) {
+            AlertDialog(
+                onDismissRequest = { showDialog = false },
+                title = { Text("Success") },
+                text = { Text("All items have been added to your cart.") },
+                confirmButton = {
+                    TextButton(onClick = { showDialog = false }) {
+                        Text("OK")
+                    }
+                }
             )
         }
     }

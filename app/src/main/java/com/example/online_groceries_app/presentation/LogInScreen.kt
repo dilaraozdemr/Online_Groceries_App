@@ -173,7 +173,7 @@ fun LogInScreen(modifier: Modifier = Modifier) {
                         fontWeight = FontWeight.W400
                     )
                 )
-                ButtonWidget(text = "Log In")
+                ButtonWidget(text = "Log In", onClick = {})
                 Spacer(modifier = Modifier.height(30.dp))
                 Row (
                     modifier = Modifier.fillMaxWidth(),

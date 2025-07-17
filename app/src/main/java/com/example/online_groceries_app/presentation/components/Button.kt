@@ -1,6 +1,7 @@
 package com.example.online_groceries_app.presentation.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,7 +21,8 @@ import com.example.online_groceries_app.R
 @Composable
 fun ButtonWidget(
     text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -29,6 +31,7 @@ fun ButtonWidget(
                 color = colorResource(id = R.color.splash_background_green),
                 shape = RoundedCornerShape(19.dp)
             )
+            .clickable {onClick()}
 
     ){
         Text(

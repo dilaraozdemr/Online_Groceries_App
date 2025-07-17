@@ -233,7 +233,7 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
                     )
                 }
                 Spacer(modifier = Modifier.height(30.dp))
-                ButtonWidget(text = "Log In")
+                ButtonWidget(text = "Log In", onClick = {})
                 Spacer(modifier = Modifier.height(30.dp))
                 Row (
                     modifier = Modifier.fillMaxWidth(),
